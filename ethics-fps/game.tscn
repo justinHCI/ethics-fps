@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://b77w0sy4wi216"]
+
+[ext_resource type="Texture2D" uid="uid://el5bwq7ajx0m" path="res://grid.png" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://cqpr0pm4rc7pa" path="res://zombie_world.gd" id="1_feb5d"]
+[ext_resource type="Texture2D" uid="uid://c3depc57pd68" path="res://crosshair.png" id="2_e2o6t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eemsi"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.6868, 0.679, 0.835, 1)
+albedo_texture = ExtResource("1_80nbo")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m6u2t"]
+
+[sub_resource type="Skin" id="Skin_smptj"]
+
+[node name="Game" type="Node" unique_id=2082302467]
+
+[node name="Zombie World" type="Node3D" parent="." unique_id=223951957]
+script = ExtResource("1_feb5d")
+
+[node name="Camera3D" type="Camera3D" parent="Zombie World" unique_id=2103060280]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 5)
+
+[node name="TargetingGrid" type="Node3D" parent="Zombie World" unique_id=766398853]
+
+[node name="GridVisual" type="MeshInstance3D" parent="Zombie World/TargetingGrid" unique_id=2031933184]
+transform = Transform3D(2, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_eemsi")
+mesh = SubResource("PlaneMesh_m6u2t")
+skin = SubResource("Skin_smptj")
+
+[node name="Crosshair" type="Node3D" parent="Zombie World" unique_id=1770127721]
+
+[node name="Sprite3D" type="Sprite3D" parent="Zombie World/Crosshair" unique_id=387110708]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0.1)
+texture = ExtResource("2_e2o6t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=329874851]
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1188322757]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=321213008]
+layout_mode = 0
+offset_top = 527.0
+offset_right = 1275.0
+offset_bottom = 717.0
+color = Color(0.64, 0.93999994, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Button1" type="Button" parent="CanvasLayer/Control" unique_id=1383528879]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 655.0
+offset_right = 247.0
+offset_bottom = 711.0
+text = "Deontological Universalist answer"
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control" unique_id=722528952]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 655.0
+offset_right = 569.0
+offset_bottom = 711.0
+text = "Deontological Relativist answer"
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control" unique_id=503889352]
+layout_mode = 0
+offset_left = 748.0
+offset_top = 655.0
+offset_right = 926.0
+offset_bottom = 711.0
+text = "Consequentialist Universalist answer"
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Button4" type="Button" parent="CanvasLayer/Control" unique_id=2123839143]
+layout_mode = 0
+offset_left = 1053.0
+offset_top = 654.0
+offset_right = 1202.0
+offset_bottom = 710.0
+text = "Consequentialist Relativist answer"
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Question" type="Label" parent="CanvasLayer/Control" unique_id=1669640598]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 541.0
+offset_right = 1015.0
+offset_bottom = 618.0
+theme_override_colors/font_color = Color(0.23, 0.23, 0.23, 1)
+theme_override_font_sizes/font_size = 27
+text = "There is a trolley about to do some wild stuff. What do you do?
+"
+
+[connection signal="pressed" from="CanvasLayer/Control/Button1" to="Zombie World" method="_on_button_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button2" to="Zombie World" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button3" to="Zombie World" method="_on_button_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button4" to="Zombie World" method="_on_button_4_pressed"]

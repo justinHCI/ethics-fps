@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://1r3xuv5b3qyl"]
+
+[ext_resource type="Texture2D" uid="uid://unbb7muymtn4" path="res://Protext1.png" id="1_u0ynk"]
+
+[resource]
+albedo_texture = ExtResource("1_u0ynk")
+metallic = 0.05
+roughness = 0.96
+uv1_scale = Vector3(8, 8, 8)
