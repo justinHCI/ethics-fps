@@ -54,55 +54,84 @@ color = Color(0.64, 0.93999994, 1, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Button1" type="Button" parent="UI/Control" unique_id=1383528879]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.45
+anchor_top = -0.95
+anchor_right = 0.5
+anchor_bottom = 0.075
 offset_left = 69.0
 offset_top = 655.0
 offset_right = 247.0
 offset_bottom = 711.0
-text = "Deontological Universalist answer"
-autowrap_mode = 3
+theme_override_font_sizes/font_size = 14
+text = "While sometimes acceptable, these instances are rare enough that universally forbidding it is the safer bet and will maximize happiness
+"
+autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Button2" type="Button" parent="UI/Control" unique_id=722528952]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.075
+anchor_top = -1.05
+anchor_right = 0.075
+anchor_bottom = 0.05
 offset_left = 391.0
 offset_top = 655.0
 offset_right = 569.0
 offset_bottom = 711.0
-text = "Deontological Relativist answer"
-autowrap_mode = 3
+theme_override_font_sizes/font_size = 14
+text = "While sometimes acceptable, these instances are rare enough that universally forbidding it is the safer bet and will maximize happiness
+"
+autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Button3" type="Button" parent="UI/Control" unique_id=503889352]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.55
+anchor_top = -1.2
+anchor_right = -0.675
+anchor_bottom = 0.1
 offset_left = 748.0
 offset_top = 655.0
 offset_right = 926.0
 offset_bottom = 711.0
-text = "Consequentialist Universalist answer"
-autowrap_mode = 3
+theme_override_font_sizes/font_size = 14
+text = "While sometimes acceptable, these instances are rare enough that universally forbidding it is the safer bet and will maximize happiness
+"
+autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Button4" type="Button" parent="UI/Control" unique_id=2123839143]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.875
+anchor_top = -1.05
+anchor_right = 0.725
+anchor_bottom = 0.025
 offset_left = 1053.0
 offset_top = 654.0
 offset_right = 1202.0
 offset_bottom = 710.0
-text = "Consequentialist Relativist answer"
-autowrap_mode = 1
+theme_override_font_sizes/font_size = 14
+text = "While sometimes acceptable, these instances are rare enough that universally forbidding it is the safer bet and will maximize happiness
+"
+autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Question" type="Label" parent="UI/Control" unique_id=1669640598]
 layout_mode = 0
-offset_left = 202.0
-offset_top = 541.0
-offset_right = 1015.0
-offset_bottom = 618.0
+offset_left = 31.0
+offset_top = 526.0
+offset_right = 1017.0
+offset_bottom = 683.0
 theme_override_colors/font_color = Color(0.23, 0.23, 0.23, 1)
-theme_override_font_sizes/font_size = 27
-text = "There is a trolley about to do some wild stuff. What do you do?
-"
+theme_override_font_sizes/font_size = 19
+text = "You are a doctor meeting with a healthy patient in the hospital. Due to a massive electic trolley accident, a heart, a lung, a kidney, a spleen, and a liver are needed for transplants. Should you cut up your healthy patient to save the five?"
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [connection signal="pressed" from="UI/Control/Button1" to="Zombie World" method="_on_button_1_pressed"]
 [connection signal="pressed" from="UI/Control/Button2" to="Zombie World" method="_on_button_2_pressed"]
