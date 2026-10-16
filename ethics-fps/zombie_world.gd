@@ -14,6 +14,10 @@ var zomb_scene = preload("res://zomb.tscn")
 var sample = []
 var timer = 0.0
 var health = 5
+var threehitsago = -1
+var twohitsago=-1
+var lasthit=-1
+var hit_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +25,10 @@ func _ready() -> void:
 	$Zomb.play()
 	#$Zomb.position = Vector3(-5, 3.5, -3)
 	$Zomb.position = Vector3(5, 3.5, -3)
+	$"../UI/Control/ComboJunk/Singer".modulate.a = 0.0
+	$"../UI/Control/ComboJunk/Mill".modulate.a = 0.0
+	$"../UI/Control/ComboJunk/Kant".modulate.a = 0.0
+	$"../UI/Control/ComboJunk/Rawls".modulate.a = 0.0
 	# Replace with function body.
 
 
@@ -91,7 +99,7 @@ func _get_a_question() -> void:
 	button_2.visible=true
 	button_3.visible=true
 	button_4.visible=true
-	var data = preload("res://questions.csv")
+	var data = preload("res://questions2.csv")
 	var records = data.records
 	var starts = []
 	# Find the first row of each question
@@ -152,13 +160,17 @@ func _on_mute_button_pressed() -> void:
 	$song.playing = not $song.playing
 
 func spawn_chance() -> void:
-	if randf() < 0.25:
+	if get_tree() == null or get_tree().current_scene == null:
+		return
+	if randf() < 0.75:
 		var zomb = zomb_scene.instantiate()
 		zomb.add_to_group("zombs")
 		if randf() < 0.5:
 			zomb.position = Vector3(-5, 3.5, -3)
+			zomb.position.x += randf()-1
 		else:
 			zomb.position = Vector3(5, 3.5, -3)
+			zomb.position.x += randf()
 		zomb.animation=(["green","yellow","teal","blue"].pick_random())
 		zomb.frame= [0,1,2].pick_random()
 		zomb.play()
@@ -168,8 +180,12 @@ func move_zombs() -> void:
 	var zombs = get_tree().get_nodes_in_group("zombs")
 	for zomb in zombs:
 		var tween = create_tween().set_parallel(true)
-		tween.tween_property(zomb, "position",Vector3(0,-1, .000001), 1).as_relative()
-		tween.tween_property(zomb, "scale",Vector3(.8,.8,.8), 1).as_relative()
+		if zomb.position.x > 0:
+			tween.tween_property(zomb, "position",Vector3(-.2,-1, .2), 1).as_relative()
+			tween.tween_property(zomb, "scale",Vector3(.8,.8,.8), 1).as_relative()
+		else:
+			tween.tween_property(zomb, "position",Vector3(.2,-1, .2), 1).as_relative()
+			tween.tween_property(zomb, "scale",Vector3(.8,.8,.8), 1).as_relative()
 		if zomb.position.y < 0:
 			if zomb.animation=="blue":
 				zomb.animation="blue_des"
@@ -190,6 +206,7 @@ func take_damage() -> void:
 		var hearts = [$"../UI/Control/Health/heart", $"../UI/Control/Health/heart2", $"../UI/Control/Health/heart3", $"../UI/Control/Health/heart4", $"../UI/Control/Health/heart5"]
 		hearts[health-1].visible = false
 		health-=1
+		$oof.play()
 	
 func check_hit(x,y):
 	var zombs = get_tree().get_nodes_in_group("zombs")
@@ -203,6 +220,57 @@ func check_hit(x,y):
 			target_zomb = zomb
 		if target_zomb != null:
 			target_zomb.queue_free()
+			$zombmoan.play()
+			check_combo(x,y)
 	$gunshot.play()
 	$gun_reload.play()
+	
+func check_combo(x,y):
+	var zombs = get_tree().get_nodes_in_group("zombs")
+	threehitsago = twohitsago
+	twohitsago = lasthit
+	if x>1 and y>1:
+		lasthit = 4
+	elif x>1:
+		lasthit = 2
+	elif y > 1:
+		lasthit = 3
+	else: 
+		lasthit = 1
+	hit_count += 1
+	if lasthit == threehitsago and lasthit == twohitsago and hit_count>3:
+		var tween = create_tween()
+		if x>1 and y>1:
+			tween.tween_property($"../UI/Control/ComboJunk/Mill","modulate:a", 1.0, 1.0)
+			tween.tween_callback($zombmoan.play)
+			for zomb in zombs:
+				if zomb.position.x>0:
+					if zomb.position.y>0:
+						zomb.queue_free()
+			tween.tween_property($"../UI/Control/ComboJunk/Mill","modulate:a", 0.0, 1.0)
+		elif x > 1:
+			tween.tween_property($"../UI/Control/ComboJunk/Singer","modulate:a", 1.0, 1.5)
+			tween.tween_callback($zombmoan.play)
+			for zomb in zombs:
+				if zomb.position.x>0:
+					if zomb.position.y<0:
+						zomb.queue_free()
+			tween.tween_property($"../UI/Control/ComboJunk/Singer","modulate:a", 0.0, 1.5)
+		elif y > 1:
+			tween.tween_property($"../UI/Control/ComboJunk/Kant","modulate:a", 1.0, 1.5)
+			tween.tween_callback($zombmoan.play)
+			for zomb in zombs:
+				if zomb.position.x<0:
+					if zomb.position.y>0:
+						zomb.queue_free()
+			tween.tween_property($"../UI/Control/ComboJunk/Kant","modulate:a", 0.0, 1.5)
+		else:
+			tween.tween_property($"../UI/Control/ComboJunk/Rawls","modulate:a", 1.0, 1.5)
+			tween.tween_callback($zombmoan.play)
+			for zomb in zombs:
+				if zomb.position.x<0:
+					if zomb.position.y<0:
+						zomb.queue_free()
+			tween.tween_property($"../UI/Control/ComboJunk/Rawls","modulate:a", 0.0, 1.5)
+	
 	

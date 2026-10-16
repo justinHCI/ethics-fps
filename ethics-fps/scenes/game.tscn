@@ -6,8 +6,16 @@
 [ext_resource type="AudioStream" uid="uid://de71vkb5fuv0t" path="res://tryna_play_a_fugue_and_its_probly_D_minor.mp3" id="4_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2f0q7hatujj" path="res://zomb.tscn" id="5_vtaks"]
 [ext_resource type="AudioStream" uid="uid://brjgckfvfbbmm" path="res://foisal72-gun-load-475276.mp3" id="6_gee14"]
-[ext_resource type="Texture2D" uid="uid://bxicwqh23h6er" path="res://icon.svg" id="6_kvpfn"]
 [ext_resource type="AudioStream" uid="uid://cj44rgxwbky84" path="res://freesound_community-submachine-gun-79846.mp3" id="7_0tnpc"]
+[ext_resource type="AudioStream" uid="uid://dmbbdn0lokxry" path="res://oof.wav" id="8_kvpfn"]
+[ext_resource type="AudioStream" uid="uid://bq64gesqc6ldy" path="res://zombgroan.wav" id="9_dinhu"]
+[ext_resource type="AudioStream" uid="uid://ccba0njfklbst" path="res://zombmoan.wav" id="10_kvuet"]
+[ext_resource type="Texture2D" uid="uid://bqhaj4uk2ax4o" path="res://heart.png" id="11_ca42v"]
+[ext_resource type="Texture2D" uid="uid://cb073c4xeq24" path="res://Peter_Singer_in_Montreal_Declaration_on_Animal_Exploitation.jpg" id="12_ir15t"]
+[ext_resource type="Texture2D" uid="uid://8aebh3hno0p1" path="res://John_Stuart_Mill,_Vanity_Fair,_1873-03-29.jpg" id="13_ca42v"]
+[ext_resource type="Texture2D" uid="uid://b01wcf5c3jhr1" path="res://Immanuel_Kant_portrait_c1790.jpg" id="14_rysoc"]
+[ext_resource type="Texture2D" uid="uid://e2n7mxjigkxr" path="res://John_Rawls_(1971_photo_portrait).jpg" id="15_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://xi76mv7iasa5" path="res://Background.glb" id="16_ca42v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eemsi"]
 transparency = 1
@@ -44,7 +52,7 @@ texture = ExtResource("3_gee14")
 
 [node name="song" type="AudioStreamPlayer" parent="Zombie World" unique_id=1566553314]
 stream = ExtResource("4_0tnpc")
-volume_db = -2.0
+volume_db = -10.211
 autoplay = true
 parameters/looping = true
 
@@ -58,6 +66,15 @@ stream = ExtResource("6_gee14")
 
 [node name="gunshot" type="AudioStreamPlayer2D" parent="Zombie World" unique_id=1731754543]
 stream = ExtResource("7_0tnpc")
+
+[node name="oof" type="AudioStreamPlayer2D" parent="Zombie World" unique_id=1730556501]
+stream = ExtResource("8_kvpfn")
+
+[node name="zombgroan" type="AudioStreamPlayer2D" parent="Zombie World" unique_id=891289914]
+stream = ExtResource("9_dinhu")
+
+[node name="zombmoan" type="AudioStreamPlayer2D" parent="Zombie World" unique_id=1644790980]
+stream = ExtResource("10_kvuet")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=329874851]
 follow_viewport_enabled = true
@@ -176,27 +193,56 @@ offset_bottom = 40.0
 [node name="heart" type="Sprite2D" parent="UI/Control/Health" unique_id=1740208582 groups=["hearts"]]
 position = Vector2(33, 32)
 scale = Vector2(0.3828125, 0.3828125)
-texture = ExtResource("6_kvpfn")
+texture = ExtResource("11_ca42v")
 
 [node name="heart2" type="Sprite2D" parent="UI/Control/Health" unique_id=581786524 groups=["hearts"]]
 position = Vector2(92, 33)
 scale = Vector2(0.3828125, 0.3828125)
-texture = ExtResource("6_kvpfn")
+texture = ExtResource("11_ca42v")
 
 [node name="heart3" type="Sprite2D" parent="UI/Control/Health" unique_id=643321202 groups=["hearts"]]
 position = Vector2(149, 33)
 scale = Vector2(0.3828125, 0.3828125)
-texture = ExtResource("6_kvpfn")
+texture = ExtResource("11_ca42v")
 
 [node name="heart4" type="Sprite2D" parent="UI/Control/Health" unique_id=60295569 groups=["hearts"]]
 position = Vector2(204, 33)
 scale = Vector2(0.3828125, 0.3828125)
-texture = ExtResource("6_kvpfn")
+texture = ExtResource("11_ca42v")
 
 [node name="heart5" type="Sprite2D" parent="UI/Control/Health" unique_id=1143663166 groups=["hearts"]]
 position = Vector2(261, 33)
 scale = Vector2(0.3828125, 0.3828125)
-texture = ExtResource("6_kvpfn")
+texture = ExtResource("11_ca42v")
+
+[node name="ComboJunk" type="Node2D" parent="UI/Control" unique_id=1245766718]
+
+[node name="Singer" type="Sprite2D" parent="UI/Control/ComboJunk" unique_id=1021059806]
+z_index = -1
+position = Vector2(1007.75, 369.25003)
+scale = Vector2(0.3, 0.218)
+texture = ExtResource("12_ir15t")
+
+[node name="Mill" type="Sprite2D" parent="UI/Control/ComboJunk" unique_id=674493280]
+z_index = -1
+position = Vector2(1004.25, 191.25)
+scale = Vector2(0.3, 0.236)
+texture = ExtResource("13_ca42v")
+
+[node name="Kant" type="Sprite2D" parent="UI/Control/ComboJunk" unique_id=1172442911]
+z_index = -1
+position = Vector2(364, 349)
+scale = Vector2(0.3, 0.208)
+texture = ExtResource("14_rysoc")
+
+[node name="Rawls" type="Sprite2D" parent="UI/Control/ComboJunk" unique_id=496068527]
+z_index = -1
+position = Vector2(368, 198)
+scale = Vector2(0.3, 0.233)
+texture = ExtResource("15_ssvqc")
+
+[node name="default2" parent="." unique_id=1828880956 instance=ExtResource("16_ca42v")]
+transform = Transform3D(0.99923986, 0.01565192, 0.035705686, -0.013435519, 0.99801725, -0.061490826, -0.03659755, 0.060964365, 0.9974691, 1.7435246, -1.0761023, -4.240967)
 
 [connection signal="pressed" from="UI/Control/Button1" to="Zombie World" method="_on_button_1_pressed"]
 [connection signal="pressed" from="UI/Control/Button2" to="Zombie World" method="_on_button_2_pressed"]

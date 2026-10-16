@@ -19,7 +19,7 @@ offset_bottom = 720.0
 color = Color(0.3254902, 0.29411766, 0.2509804, 1)
 
 [node name="Jules" type="Sprite2D" parent="." unique_id=940617610]
-position = Vector2(899, 548)
+position = Vector2(1074, 272)
 scale = Vector2(0.1638889, 0.1638889)
 texture = ExtResource("2_0ctdu")
 
@@ -31,7 +31,7 @@ offset_right = 904.0
 offset_bottom = 575.0
 text = "Credits
 
-Art and game design: Meena Ko
+Art and game design: MeeNa Ko
 
 Programming and sound design: Justin Edwards
 
@@ -43,15 +43,23 @@ SFX:
  https://pixabay.com/sound-effects/gun-load-475276/
 https://pixabay.com/sound-effects/film-special-effects-submachine-gun-79846/
 
+Philosopher images: Wikimedia Commons
 
 
 
 
 
 
+"
+horizontal_alignment = 1
 
-
-The Happieness Monster: Jules Howdyshell "
+[node name="Label2" type="Label" parent="." unique_id=1666127226]
+layout_mode = 0
+offset_left = 824.0
+offset_top = 62.0
+offset_right = 1322.0
+offset_bottom = 221.0
+text = "Happieness Monster: Jules Howdyshell "
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="." unique_id=2044401603]
