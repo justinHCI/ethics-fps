@@ -19,25 +19,6 @@ albedo_texture = ExtResource("2_u5sy4")
 
 [sub_resource type="Skin" id="Skin_smptj"]
 
-[sub_resource type="Gradient" id="Gradient_fc0e3"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fc0e3"]
-gradient = SubResource("Gradient_fc0e3")
-fill_from = Vector2(1, 0)
-
-[sub_resource type="Gradient" id="Gradient_7jktm"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7jktm"]
-gradient = SubResource("Gradient_7jktm")
-fill_from = Vector2(0.5825688, 0.5733945)
-
-[sub_resource type="Gradient" id="Gradient_ryrav"]
-offsets = PackedFloat32Array(0, 0.0064935065, 0.012987013, 0.83116883)
-colors = PackedColorArray(0, 0, 0, 1, 0.6753247, 0.6753247, 0.6753247, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ryrav"]
-gradient = SubResource("Gradient_ryrav")
-
 [node name="Game" type="Node" unique_id=2082302467]
 
 [node name="Zombie World" type="Node3D" parent="." unique_id=223951957]
@@ -67,8 +48,10 @@ volume_db = -2.0
 autoplay = true
 parameters/looping = true
 
-[node name="Zomb" parent="Zombie World" unique_id=851818531 groups=["zombs"] instance=ExtResource("5_vtaks")]
+[node name="Zomb" parent="Zombie World" unique_id=851818531 instance=ExtResource("5_vtaks")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, -0.24658203)
+animation = &"blue"
+frame_progress = 0.0
 
 [node name="gun_reload" type="AudioStreamPlayer2D" parent="Zombie World" unique_id=968573724]
 stream = ExtResource("6_gee14")
@@ -87,11 +70,13 @@ offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="UI/Control" unique_id=321213008]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.075
 offset_top = 527.0
 offset_right = 1275.0
 offset_bottom = 717.0
-color = Color(0.64, 0.93999994, 1, 1)
+color = Color(0.30980393, 0.52156866, 0.72156864, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Button1" type="Button" parent="UI/Control" unique_id=1383528879]
@@ -168,21 +153,20 @@ offset_left = 5.0
 offset_top = 529.0
 offset_right = 1249.0
 offset_bottom = 686.0
-theme_override_colors/font_color = Color(0.23, 0.23, 0.23, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 19
 text = "You are a doctor meeting with a healthy patient in the hospital. Due to a massive electic trolley accident, a heart, a lung, a kidney, a spleen, and a liver are needed for transplants. Should you cut up your healthy patient to save the five?"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="MuteButton" type="TextureButton" parent="UI/Control" unique_id=1438690400]
+[node name="MuteButton" type="CheckButton" parent="UI/Control" unique_id=403613272]
 layout_mode = 0
-offset_left = 1238.0
-offset_top = 535.0
-offset_right = 1269.0
-offset_bottom = 569.0
-texture_normal = SubResource("GradientTexture2D_fc0e3")
-texture_pressed = SubResource("GradientTexture2D_7jktm")
-texture_hover = SubResource("GradientTexture1D_ryrav")
+offset_left = 1185.0
+offset_top = 7.0
+offset_right = 1249.0
+offset_bottom = 71.0
+button_pressed = true
+text = "Music"
 
 [node name="Health" type="Container" parent="UI/Control" unique_id=139146096]
 layout_mode = 0

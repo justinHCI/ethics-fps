@@ -29,8 +29,9 @@ func _process(delta: float) -> void:
 	timer += delta
 	if timer >= 2.0:
 		timer -= 2.0
-		spawn_chance()
 		move_zombs()
+		spawn_chance()
+		
 
 
 func _on_button_1_pressed() -> void:
@@ -158,6 +159,8 @@ func spawn_chance() -> void:
 			zomb.position = Vector3(-5, 3.5, -3)
 		else:
 			zomb.position = Vector3(5, 3.5, -3)
+		zomb.animation=(["green","yellow","teal","blue"].pick_random())
+		zomb.frame= [0,1,2].pick_random()
 		zomb.play()
 		get_tree().current_scene.add_child(zomb)
 
@@ -165,8 +168,17 @@ func move_zombs() -> void:
 	var zombs = get_tree().get_nodes_in_group("zombs")
 	for zomb in zombs:
 		var tween = create_tween().set_parallel(true)
-		tween.tween_property(zomb, "position",Vector3(0,-1,-.000001), 1).as_relative()
-		tween.tween_property(zomb, "scale",Vector3(.5,.5,.5), 1).as_relative()
+		tween.tween_property(zomb, "position",Vector3(0,-1, .000001), 1).as_relative()
+		tween.tween_property(zomb, "scale",Vector3(.8,.8,.8), 1).as_relative()
+		if zomb.position.y < 0:
+			if zomb.animation=="blue":
+				zomb.animation="blue_des"
+			if zomb.animation=="green":
+				zomb.animation="green_des"
+			if zomb.animation=="yellow":
+				zomb.animation="yellow_des"
+			if zomb.animation=="teal":
+				zomb.animation="teal_des"
 		if zomb.position.y < -3:
 			zomb.queue_free()
 			take_damage()
