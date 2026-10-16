@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://y21dryfsigoj"]
+
+[ext_resource type="Script" uid="uid://codr4q6bnfx4r" path="res://control.gd" id="1_2ckv8"]
+[ext_resource type="Texture2D" uid="uid://stuxaqwydevi" path="res://jules.jpg" id="2_0ctdu"]
+
+[node name="Control" type="Control" unique_id=2015206084]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ckv8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=66297921]
+layout_mode = 0
+offset_right = 1282.0
+offset_bottom = 720.0
+color = Color(0.33333334, 0.2784314, 0.20392157, 1)
+
+[node name="Jules" type="Sprite2D" parent="." unique_id=940617610]
+position = Vector2(899, 548)
+scale = Vector2(0.1638889, 0.1638889)
+texture = ExtResource("2_0ctdu")
+
+[node name="Label" type="Label" parent="." unique_id=1996117761]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 35.0
+offset_right = 904.0
+offset_bottom = 575.0
+text = "Credits
+
+Art and game design: Meena Ko
+
+Programming and sound design: Justin Edwards
+
+Ethical question writing and scoring: Stanford Howdyshell
+
+(De)composing: J.S. Bach
+
+SFX:
+ https://pixabay.com/sound-effects/gun-load-475276/
+https://pixabay.com/sound-effects/film-special-effects-submachine-gun-79846/
+
+
+
+
+
+
+
+
+
+The Happieness Monster: Jules Howdyshell "
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=2044401603]
+layout_mode = 0
+offset_left = 394.0
+offset_top = 638.0
+offset_right = 566.0
+offset_bottom = 684.0
+text = "Return to title screen"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

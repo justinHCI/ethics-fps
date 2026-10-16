@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://batvjns7xh8gs"]
+
+[ext_resource type="Script" uid="uid://cldqb3xgugxg3" path="res://scenes/intructions.gd" id="1_vdhd1"]
+
+[node name="Intructions" type="Control" unique_id=777660325]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vdhd1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1366329175]
+layout_mode = 0
+offset_right = 1281.0
+offset_bottom = 720.0
+color = Color(0.33333334, 0.2784314, 0.20392157, 1)
+
+[node name="Label" type="Label" parent="." unique_id=755777203]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 59.0
+offset_right = 1252.0
+offset_bottom = 412.0
+theme_override_font_sizes/font_size = 20
+text = "Philosphical zombies are theoretical creatures which are exactly like humans but which lack an internal, concious experience.
+
+They are also coming after you and they're pissed.
+
+Fight off the zombie hoard by answering ethical thought experiments. 
+
+To shoot to your left, answer as a deonotolgist (act according to your duties)
+To shoot to your right, answer as a consequentialist (maximize happiness for the greatest number of people)
+To shoot high, answer as a libertarian (prioritize free will)
+To shoot low, answer as a paternalist (restrict freedom, make decisions for others)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=586192417]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 532.0
+offset_right = 781.0
+offset_bottom = 635.0
+text = "Pull the lever 
+(start game)"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

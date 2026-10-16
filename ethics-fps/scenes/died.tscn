@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c1dbsvcg73dp2"]
+
+[ext_resource type="Script" uid="uid://clwjlnhdihtcg" path="res://scenes/died.gd" id="1_1lit6"]
+
+[node name="Node2D" type="Node2D" unique_id=782062532]
+script = ExtResource("1_1lit6")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1287983562]
+offset_right = 1276.0
+offset_bottom = 720.0
+color = Color(0.33500454, 0.27870235, 0.20327324, 1)
+
+[node name="Button" type="Button" parent="." unique_id=1938314757]
+offset_left = 455.0
+offset_top = 488.0
+offset_right = 805.0
+offset_bottom = 638.0
+text = "Return to Title Screen"
+
+[node name="Label" type="Label" parent="." unique_id=26966347]
+offset_left = 177.0
+offset_top = 112.0
+offset_right = 1098.0
+offset_bottom = 432.0
+text = "You were killed by Philosophical Zombies.
+
+Was this a consequence of your actions? Or perhaps the way things were meant to be?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

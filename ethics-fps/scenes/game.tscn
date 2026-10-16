@@ -1,22 +1,47 @@
 [gd_scene format=3 uid="uid://b77w0sy4wi216"]
 
-[ext_resource type="Texture2D" uid="uid://el5bwq7ajx0m" path="res://grid.png" id="1_80nbo"]
-[ext_resource type="Script" uid="uid://cqpr0pm4rc7pa" path="res://zombie_world.gd" id="1_feb5d"]
-[ext_resource type="Texture2D" uid="uid://c3depc57pd68" path="res://crosshair.png" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://cqpr0pm4rc7pa" path="res://zombie_world.gd" id="1_p57ef"]
+[ext_resource type="Texture2D" uid="uid://el5bwq7ajx0m" path="res://grid.png" id="2_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://c3depc57pd68" path="res://crosshair.png" id="3_gee14"]
+[ext_resource type="AudioStream" uid="uid://de71vkb5fuv0t" path="res://tryna_play_a_fugue_and_its_probly_D_minor.mp3" id="4_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://2f0q7hatujj" path="res://zomb.tscn" id="5_vtaks"]
+[ext_resource type="AudioStream" uid="uid://brjgckfvfbbmm" path="res://foisal72-gun-load-475276.mp3" id="6_gee14"]
+[ext_resource type="Texture2D" uid="uid://bxicwqh23h6er" path="res://icon.svg" id="6_kvpfn"]
+[ext_resource type="AudioStream" uid="uid://cj44rgxwbky84" path="res://freesound_community-submachine-gun-79846.mp3" id="7_0tnpc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eemsi"]
+transparency = 1
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.6868, 0.679, 0.835, 1)
-albedo_texture = ExtResource("1_80nbo")
+albedo_texture = ExtResource("2_u5sy4")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_m6u2t"]
 
 [sub_resource type="Skin" id="Skin_smptj"]
 
+[sub_resource type="Gradient" id="Gradient_fc0e3"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fc0e3"]
+gradient = SubResource("Gradient_fc0e3")
+fill_from = Vector2(1, 0)
+
+[sub_resource type="Gradient" id="Gradient_7jktm"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7jktm"]
+gradient = SubResource("Gradient_7jktm")
+fill_from = Vector2(0.5825688, 0.5733945)
+
+[sub_resource type="Gradient" id="Gradient_ryrav"]
+offsets = PackedFloat32Array(0, 0.0064935065, 0.012987013, 0.83116883)
+colors = PackedColorArray(0, 0, 0, 1, 0.6753247, 0.6753247, 0.6753247, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ryrav"]
+gradient = SubResource("Gradient_ryrav")
+
 [node name="Game" type="Node" unique_id=2082302467]
 
 [node name="Zombie World" type="Node3D" parent="." unique_id=223951957]
-script = ExtResource("1_feb5d")
+script = ExtResource("1_p57ef")
 
 [node name="Camera3D" type="Camera3D" parent="Zombie World" unique_id=2103060280]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 5)
@@ -25,6 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 5)
 
 [node name="GridVisual" type="MeshInstance3D" parent="Zombie World/TargetingGrid" unique_id=2031933184]
 transform = Transform3D(2, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, 0, 0, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_eemsi")
 mesh = SubResource("PlaneMesh_m6u2t")
 skin = SubResource("Skin_smptj")
@@ -33,7 +59,22 @@ skin = SubResource("Skin_smptj")
 
 [node name="Sprite3D" type="Sprite3D" parent="Zombie World/Crosshair" unique_id=387110708]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0.1)
-texture = ExtResource("2_e2o6t")
+texture = ExtResource("3_gee14")
+
+[node name="song" type="AudioStreamPlayer" parent="Zombie World" unique_id=1566553314]
+stream = ExtResource("4_0tnpc")
+volume_db = -2.0
+autoplay = true
+parameters/looping = true
+
+[node name="Zomb" parent="Zombie World" unique_id=851818531 groups=["zombs"] instance=ExtResource("5_vtaks")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, -0.24658203)
+
+[node name="gun_reload" type="AudioStreamPlayer2D" parent="Zombie World" unique_id=968573724]
+stream = ExtResource("6_gee14")
+
+[node name="gunshot" type="AudioStreamPlayer2D" parent="Zombie World" unique_id=1731754543]
+stream = ExtResource("7_0tnpc")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=329874851]
 follow_viewport_enabled = true
@@ -123,17 +164,58 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Question" type="Label" parent="UI/Control" unique_id=1669640598]
 layout_mode = 0
-offset_left = 31.0
-offset_top = 526.0
-offset_right = 1017.0
-offset_bottom = 683.0
+offset_left = 5.0
+offset_top = 529.0
+offset_right = 1249.0
+offset_bottom = 686.0
 theme_override_colors/font_color = Color(0.23, 0.23, 0.23, 1)
 theme_override_font_sizes/font_size = 19
 text = "You are a doctor meeting with a healthy patient in the hospital. Due to a massive electic trolley accident, a heart, a lung, a kidney, a spleen, and a liver are needed for transplants. Should you cut up your healthy patient to save the five?"
 horizontal_alignment = 1
 autowrap_mode = 3
 
+[node name="MuteButton" type="TextureButton" parent="UI/Control" unique_id=1438690400]
+layout_mode = 0
+offset_left = 1238.0
+offset_top = 535.0
+offset_right = 1269.0
+offset_bottom = 569.0
+texture_normal = SubResource("GradientTexture2D_fc0e3")
+texture_pressed = SubResource("GradientTexture2D_7jktm")
+texture_hover = SubResource("GradientTexture1D_ryrav")
+
+[node name="Health" type="Container" parent="UI/Control" unique_id=139146096]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="heart" type="Sprite2D" parent="UI/Control/Health" unique_id=1740208582 groups=["hearts"]]
+position = Vector2(33, 32)
+scale = Vector2(0.3828125, 0.3828125)
+texture = ExtResource("6_kvpfn")
+
+[node name="heart2" type="Sprite2D" parent="UI/Control/Health" unique_id=581786524 groups=["hearts"]]
+position = Vector2(92, 33)
+scale = Vector2(0.3828125, 0.3828125)
+texture = ExtResource("6_kvpfn")
+
+[node name="heart3" type="Sprite2D" parent="UI/Control/Health" unique_id=643321202 groups=["hearts"]]
+position = Vector2(149, 33)
+scale = Vector2(0.3828125, 0.3828125)
+texture = ExtResource("6_kvpfn")
+
+[node name="heart4" type="Sprite2D" parent="UI/Control/Health" unique_id=60295569 groups=["hearts"]]
+position = Vector2(204, 33)
+scale = Vector2(0.3828125, 0.3828125)
+texture = ExtResource("6_kvpfn")
+
+[node name="heart5" type="Sprite2D" parent="UI/Control/Health" unique_id=1143663166 groups=["hearts"]]
+position = Vector2(261, 33)
+scale = Vector2(0.3828125, 0.3828125)
+texture = ExtResource("6_kvpfn")
+
 [connection signal="pressed" from="UI/Control/Button1" to="Zombie World" method="_on_button_1_pressed"]
 [connection signal="pressed" from="UI/Control/Button2" to="Zombie World" method="_on_button_2_pressed"]
 [connection signal="pressed" from="UI/Control/Button3" to="Zombie World" method="_on_button_3_pressed"]
 [connection signal="pressed" from="UI/Control/Button4" to="Zombie World" method="_on_button_4_pressed"]
+[connection signal="pressed" from="UI/Control/MuteButton" to="Zombie World" method="_on_mute_button_pressed"]

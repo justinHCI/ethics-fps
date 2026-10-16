@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://2f0q7hatujj"]
+
+[ext_resource type="Texture2D" uid="uid://bxicwqh23h6er" path="res://icon.svg" id="1_dmtfl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
+atlas = ExtResource("1_dmtfl")
+region = Rect2(0, 0, 42, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eow3j"]
+atlas = ExtResource("1_dmtfl")
+region = Rect2(42, 0, 42, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5wjh"]
+atlas = ExtResource("1_dmtfl")
+region = Rect2(84, 0, 42, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m6u2t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryrav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eow3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5wjh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Zomb" type="AnimatedSprite3D" unique_id=851818531]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+billboard = 1
+no_depth_test = true
+sprite_frames = SubResource("SpriteFrames_m6u2t")
+frame_progress = 0.8688515
